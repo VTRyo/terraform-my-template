@@ -6,8 +6,8 @@ resource "aws_instance" "my-server" {
   vpc_security_group_ids   = ["${data.terraform_remote_state.common.security_group_mail}"]
   subnet_id                = "${data.terraform_remote_state.common.subnet_public_a_id}"
   root_block_device        = {
-    volume_type            = ""${lookup(var.ec2_my_config, "root_block_device_volume_type")}""
-    volume_size            = ""${lookup(var.ec2_my_config, "root_block_device_volume_size")}""
+    volume_type            = "${lookup(var.ec2_my_config, "root_block_device_volume_type")}"
+    volume_size            = "${lookup(var.ec2_my_config, "root_block_device_volume_size")}"
   }
   tags {
     Name                   = "${var.env}-my-${format("server%02d", count.index + 1)}"
